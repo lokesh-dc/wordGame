@@ -12,4 +12,15 @@ app.get("/", async (req, res)=>{
     }
 })
 
+
+app.post("/", async(req, res)=>{
+    let {userName} = req.body;
+    try{
+        let user = await userModel.create({userName})
+        res.send({status: true, user});
+    }catch(e){
+        res.send({status: false, message: e.message});
+    }
+})
+
 module.exports = app;
